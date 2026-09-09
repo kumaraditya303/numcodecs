@@ -112,7 +112,8 @@ def list_compressors():
 def get_nthreads():
     """Get the number of threads that Blosc uses internally for compression and
     decompression."""
-    return blosc_get_nthreads()
+    with _MUTEX:
+        return blosc_get_nthreads()
 
 
 def set_nthreads(int nthreads):
